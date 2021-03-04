@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * Copyright © 2020 GBPrimePay Checkout.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:/Event/etc/events.xsd">
+    <event name="gbprimepay_before_checkout">
+        <observer name="gbprimepay_checkout_model_observer_requestbeforecheckout"
+            instance="GBPrimePay\Checkout\Model\Observer\RequestBeforeCheckout"/>
+    </event>
+</config>

@@ -1,0 +1,52 @@
+<?php
+/**
+ * GBPrimePay_Checkout extension
+ * @package GBPrimePay_Checkout
+ * @copyright Copyright (c) 2020 GBPrimePay Checkout (https://gbprimepay.com/)
+ */
+// @codingStandardsIgnoreFile
+/** @var \GBPrimePay\Checkout\Block\Checkout\View\Cancel $block */
+$configData = $block->getConfigData();
+$isEnableSave = $configData->getIsSave();
+$cards = $block->getDataCard();
+$customerId = $block->customerSession->getCustomerId() ? '1' : '0';
+$baseUrl = $block->getBaseUrl();
+$transaction = $block->getTransactionCancel();
+$_form_key = $transaction['transaction_form'];
+$returnUrlSuccess = $block->getUrl("checkout/onepage/success");
+$returnUrlFailed = $block->getUrl("checkout/cart");
+
+$img_checked = $configData->getImageURLs('checked');
+$img_unchecked = $configData->getImageURLs('unchecked');
+$img_logopay = $configData->getImageURLs('logopay');
+
+
+  echo $block->getFormKey();
+  echo '<div class="failure_display" id="gbprimepay-failure-payment-failed" style="display:block;">';
+  echo '<center><br><br>';
+  echo '<img src="' . $img_unchecked . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<h3>GBPrimePay Checkout Failed!</h3>';
+  echo '<img src="' . $img_logopay . '" style="padding:0px 0px 0px 0px;windth:100%;">';
+  echo '<br><br><br>';
+  echo 'Pay with GBPrimePay Checkout has been failure and <span style="color: #ff5501;">"Order is Canceled"</span>.';
+  echo '<br><br><br>';
+  echo 'Redirecting...';
+  echo '<br><br><br><br><br><br>';
+  echo '</center>';
+  echo '</div>';
+?>
+<script>
+require([
+  'jquery',
+  'prototype',
+  'domReady!'
+], function ($, domReady) {
+  'use strict';
+  setInterval(function(){get_return_url($);},10000);
+});
+function get_return_url($){
+var $orderFormkey = $("input[name='form_key']").val();         
+var $orderURL = "<?php echo $returnUrlFailed; ?>";      
+window.location.replace($orderURL);
+}
+</script>

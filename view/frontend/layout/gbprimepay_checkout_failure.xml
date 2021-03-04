@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Copyright © 2020 GBPrimePay Checkout.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="GBPrimePay\Checkout\Block\Checkout\View\Config" template="GBPrimePay_Checkout::checkout/view/failure.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

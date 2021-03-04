@@ -1,0 +1,24 @@
+{
+    "name": "gbprimepay/checkout",
+    "description": "GBPrimePay Checkout for Magento 2",
+    "homepage": "https://github.com/GBPrimepay/magento2-gbprimepay-checkout",
+    "type": "magento2-module",
+    "require": {
+        "php": ">=7.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GBPrimePay\\Checkout\\": ""
+        }
+    }
+}

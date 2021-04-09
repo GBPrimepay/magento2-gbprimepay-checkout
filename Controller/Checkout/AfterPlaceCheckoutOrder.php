@@ -301,6 +301,120 @@ if ($this->_config->getCanDebug()) {
                 }
             }
 
+
+            if($paymentType=='L'){
+                // Rabbit Line Pay
+                $_amount = $order->getBaseCurrency()->formatTxt($postData['amount']);
+                $payment_type = "gbprimepay_linepay";
+                $order_note = "Payment Authorized, Pay with Rabbit Line Pay amount: ".$_amount.". Reference ID: "."\"$_gbpReferenceNum\"";  
+                if ($this->_config->getCanDebug()) {
+                    $this->gbprimepayLogger->addDebug("Rabbit Line Pay Callback Handler //" . print_r($postData,true));
+                }
+                if ($postData['resultCode'] === '00') {
+                    if ($orderId) {
+                        if ($order->canInvoice() && !$order->hasInvoices()) {
+                            $this->generateInvoice($orderId, $payment_type);
+                            $this->generateTransaction($orderId, $_transaction_id, $_gbpReferenceNum);
+                            $this->setOrderStateAndStatus($orderId, \Magento\Sales\Model\Order::STATE_PROCESSING, $order_note);
+                            $this->checkoutSession->clearQuote();
+
+// checkout_afterpay_url
+$checkoutmethod = 'linepay';
+$checkoutshoprefNo = $ordertxt;
+$checkoutserialID = $postData['merchantDefined1'];
+$checkoutID = $postData['merchantDefined5'];
+$checkoutgbpReferenceNo = $postData['gbpReferenceNo'];
+$checkoutamount = $postData['amount'];
+$checkoutdate = $postData['date'];
+$checkouttime = $postData['time'];
+$url = $checkout_url.'/afterpay/'.$checkoutID;
+$field = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"referenceNo\"\r\n\r\n$referenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"method\"\r\n\r\n$checkoutmethod\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"gbpReferenceNo\"\r\n\r\n$checkoutgbpReferenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"amount\"\r\n\r\n$checkoutamount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"date\"\r\n\r\n$checkoutdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"time\"\r\n\r\n$checkouttime\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"shoprefNo\"\r\n\r\n$checkoutshoprefNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;name=\"serialID\"\r\n\r\n$checkoutserialID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"checkoutID\"\r\n\r\n$checkoutID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
+
+$checkoutReturn = $this->_config->afterpayCheckout("$url", $field, 'POST');
+if ($this->_config->getCanDebug()) {
+    $this->gbprimepayLogger->addDebug("Rabbit Line Pay Return Handler //" . $url .'\r\n\r\n'. print_r($checkoutReturn,true));
+}
+                        }
+                    }
+                }
+            }
+
+
+            if($paymentType=='T'){
+                // TrueMoney Wallet
+                $_amount = $order->getBaseCurrency()->formatTxt($postData['amount']);
+                $payment_type = "gbprimepay_truewallet";
+                $order_note = "Payment Authorized, Pay with TrueMoney Wallet amount: ".$_amount.". Reference ID: "."\"$_gbpReferenceNum\"";  
+                if ($this->_config->getCanDebug()) {
+                    $this->gbprimepayLogger->addDebug("TrueMoney Wallet Callback Handler //" . print_r($postData,true));
+                }
+                if ($postData['resultCode'] === '00') {
+                    if ($orderId) {
+                        if ($order->canInvoice() && !$order->hasInvoices()) {
+                            $this->generateInvoice($orderId, $payment_type);
+                            $this->generateTransaction($orderId, $_transaction_id, $_gbpReferenceNum);
+                            $this->setOrderStateAndStatus($orderId, \Magento\Sales\Model\Order::STATE_PROCESSING, $order_note);
+                            $this->checkoutSession->clearQuote();
+
+// checkout_afterpay_url
+$checkoutmethod = 'truewallet';
+$checkoutshoprefNo = $ordertxt;
+$checkoutserialID = $postData['merchantDefined1'];
+$checkoutID = $postData['merchantDefined5'];
+$checkoutgbpReferenceNo = $postData['gbpReferenceNo'];
+$checkoutamount = $postData['amount'];
+$checkoutdate = $postData['date'];
+$checkouttime = $postData['time'];
+$url = $checkout_url.'/afterpay/'.$checkoutID;
+$field = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"referenceNo\"\r\n\r\n$referenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"method\"\r\n\r\n$checkoutmethod\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"gbpReferenceNo\"\r\n\r\n$checkoutgbpReferenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"amount\"\r\n\r\n$checkoutamount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"date\"\r\n\r\n$checkoutdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"time\"\r\n\r\n$checkouttime\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"shoprefNo\"\r\n\r\n$checkoutshoprefNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;name=\"serialID\"\r\n\r\n$checkoutserialID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"checkoutID\"\r\n\r\n$checkoutID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
+
+$checkoutReturn = $this->_config->afterpayCheckout("$url", $field, 'POST');
+if ($this->_config->getCanDebug()) {
+    $this->gbprimepayLogger->addDebug("TrueMoney Wallet Return Handler //" . $url .'\r\n\r\n'. print_r($checkoutReturn,true));
+}
+                        }
+                    }
+                }
+            }
+
+
+            if($paymentType=='M'){
+                // Mobile Banking
+                $_amount = $order->getBaseCurrency()->formatTxt($postData['amount']);
+                $payment_type = "gbprimepay_mbanking";
+                $order_note = "Payment Authorized, Pay with Mobile Banking amount: ".$_amount.". Reference ID: "."\"$_gbpReferenceNum\"";  
+                if ($this->_config->getCanDebug()) {
+                    $this->gbprimepayLogger->addDebug("Mobile Banking Callback Handler //" . print_r($postData,true));
+                }
+                if ($postData['resultCode'] === '00') {
+                    if ($orderId) {
+                        if ($order->canInvoice() && !$order->hasInvoices()) {
+                            $this->generateInvoice($orderId, $payment_type);
+                            $this->generateTransaction($orderId, $_transaction_id, $_gbpReferenceNum);
+                            $this->setOrderStateAndStatus($orderId, \Magento\Sales\Model\Order::STATE_PROCESSING, $order_note);
+                            $this->checkoutSession->clearQuote();
+
+// checkout_afterpay_url
+$checkoutmethod = 'mbanking';
+$checkoutshoprefNo = $ordertxt;
+$checkoutserialID = $postData['merchantDefined1'];
+$checkoutID = $postData['merchantDefined5'];
+$checkoutgbpReferenceNo = $postData['gbpReferenceNo'];
+$checkoutamount = $postData['amount'];
+$checkoutdate = $postData['date'];
+$checkouttime = $postData['time'];
+$url = $checkout_url.'/afterpay/'.$checkoutID;
+$field = "------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"referenceNo\"\r\n\r\n$referenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"method\"\r\n\r\n$checkoutmethod\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"gbpReferenceNo\"\r\n\r\n$checkoutgbpReferenceNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"amount\"\r\n\r\n$checkoutamount\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"date\"\r\n\r\n$checkoutdate\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"time\"\r\n\r\n$checkouttime\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"shoprefNo\"\r\n\r\n$checkoutshoprefNo\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data;name=\"serialID\"\r\n\r\n$checkoutserialID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW\r\nContent-Disposition: form-data; name=\"checkoutID\"\r\n\r\n$checkoutID\r\n------WebKitFormBoundary7MA4YWxkTrZu0gW--";
+
+$checkoutReturn = $this->_config->afterpayCheckout("$url", $field, 'POST');
+if ($this->_config->getCanDebug()) {
+    $this->gbprimepayLogger->addDebug("Mobile Banking Return Handler //" . $url .'\r\n\r\n'. print_r($checkoutReturn,true));
+}
+                        }
+                    }
+                }
+            }
+
     }
 }
          

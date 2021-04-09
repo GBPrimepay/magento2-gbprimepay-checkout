@@ -26,6 +26,15 @@
         <method name="gbprimepay_qrwechat">
             <allow_multiple_address>1</allow_multiple_address>
         </method>
+        <method name="gbprimepay_linepay">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="gbprimepay_truewallet">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="gbprimepay_mbanking">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
         <method name="gbprimepay_barcode">
             <allow_multiple_address>1</allow_multiple_address>
         </method>

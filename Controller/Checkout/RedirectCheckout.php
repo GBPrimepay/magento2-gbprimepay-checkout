@@ -128,6 +128,21 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                               $res .=  '<input type="hidden" name="init_gbp[init_gateways][qrwechat]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
+                        if(($key=='linepay') && ($jvalue==$key)){                    
+                          foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][linepay]['. $ikey .']" value="'. $ivalue .'">';
+                          }
+                        }
+                        if(($key=='truewallet') && ($jvalue==$key)){                    
+                          foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][truewallet]['. $ikey .']" value="'. $ivalue .'">';
+                          }
+                        }
+                        if(($key=='mbanking') && ($jvalue==$key)){                    
+                          foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][mbanking]['. $ikey .']" value="'. $ivalue .'">';
+                          }
+                        }
                         if(($key=='barcode') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
                               $res .=  '<input type="hidden" name="init_gbp[init_gateways][barcode]['. $ikey .']" value="'. $ivalue .'">';

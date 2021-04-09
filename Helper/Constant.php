@@ -29,4 +29,5 @@ class Constant
 
     const URL_CHECKCUSTOMERKEY_TEST = 'https://api.globalprimepay.com/checkCustomerKey';
     const URL_CHECKCUSTOMERKEY_LIVE = 'https://api.gbprimepay.com/checkCustomerKey';
+
 }

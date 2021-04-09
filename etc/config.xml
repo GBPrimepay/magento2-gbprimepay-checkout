@@ -59,10 +59,28 @@
               <sort_order>50</sort_order>
               <model>GBPrimePay\Checkout\Model\GBPrimePayQrwechat</model>
           </gbprimepay_qrwechat>
+          <gbprimepay_linepay>
+              <active>0</active>
+              <title>Pay with Rabbit Line Pay</title>
+              <sort_order>60</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayLinepay</model>
+          </gbprimepay_linepay>
+          <gbprimepay_truewallet>
+              <active>0</active>
+              <title>Pay with TrueMoney Wallet</title>
+              <sort_order>70</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayTruewallet</model>
+          </gbprimepay_truewallet>
+          <gbprimepay_mbanking>
+              <active>0</active>
+              <title>Pay with Mobile Banking</title>
+              <sort_order>80</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayMbanking</model>
+          </gbprimepay_mbanking>
           <gbprimepay_barcode>
               <active>0</active>
               <title>Pay with Bill Payment</title>
-              <sort_order>60</sort_order>
+              <sort_order>90</sort_order>
               <model>GBPrimePay\Checkout\Model\GBPrimePayBarcode</model>
           </gbprimepay_barcode>
       </gbprimepay>
@@ -106,10 +124,28 @@
               <sort_order>50</sort_order>
               <model>GBPrimePay\Checkout\Model\GBPrimePayQrwechat</model>
           </gbprimepay_qrwechat>
+          <gbprimepay_linepay>
+              <active>1</active>
+              <title>Pay with Rabbit Line Pay</title>
+              <sort_order>60</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayLinepay</model>
+          </gbprimepay_linepay>
+          <gbprimepay_truewallet>
+              <active>1</active>
+              <title>Pay with TrueMoney Wallet</title>
+              <sort_order>70</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayTruewallet</model>
+          </gbprimepay_truewallet>
+          <gbprimepay_mbanking>
+              <active>1</active>
+              <title>Pay with Mobile Banking</title>
+              <sort_order>80</sort_order>
+              <model>GBPrimePay\Checkout\Model\GBPrimePayMbanking</model>
+          </gbprimepay_mbanking>
           <gbprimepay_barcode>
               <active>1</active>
               <title>Pay with Bill Payment</title>
-              <sort_order>60</sort_order>
+              <sort_order>90</sort_order>
               <model>GBPrimePay\Checkout\Model\GBPrimePayBarcode</model>
           </gbprimepay_barcode>
         </payment>

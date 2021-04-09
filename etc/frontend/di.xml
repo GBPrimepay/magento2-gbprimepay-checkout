@@ -65,6 +65,30 @@
     <virtualType name="GBPrimePay\Checkout\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
         <arguments>
             <argument name="methodCodes" xsi:type="array">
+                <item name="gbprimepay_linepay" xsi:type="const">GBPrimePay\Checkout\Model\GBPrimePayLinepay::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GBPrimePay\Checkout\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="gbprimepay_truewallet" xsi:type="const">GBPrimePay\Checkout\Model\GBPrimePayTruewallet::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GBPrimePay\Checkout\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="gbprimepay_mbanking" xsi:type="const">GBPrimePay\Checkout\Model\GBPrimePayMbanking::CODE</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GBPrimePay\Checkout\Model\ConfigProvider" type="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
                 <item name="gbprimepay_barcode" xsi:type="const">GBPrimePay\Checkout\Model\GBPrimePayBarcode::CODE</item>
             </argument>
         </arguments>

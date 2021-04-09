@@ -31,25 +31,6 @@
                                                                         <item name="gbprimepay_checkout" xsi:type="array">
                                                                         </item>
 
-                                                                        <item name="gbprimepay_direct" xsi:type="array">
-                                                                            <item name="isBillingAddressRequired" xsi:type="boolean">true</item>
-                                                                        </item>
-
-                                                                        <item name="gbprimepay_installment" xsi:type="array">
-                                                                        </item>
-
-                                                                        <item name="gbprimepay_qrcode" xsi:type="array">
-                                                                        </item>
-
-                                                                        <item name="gbprimepay_qrcredit" xsi:type="array">
-                                                                        </item>
-
-                                                                        <item name="gbprimepay_qrwechat" xsi:type="array">
-                                                                        </item>
-
-                                                                        <item name="gbprimepay_barcode" xsi:type="array">
-                                                                        </item>
-
                                                                     </item>
                                                                 </item>
                                                             </item>

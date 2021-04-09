@@ -57,6 +57,15 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         if($images=='qrwechat'){
             $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/qrwechat.png");
         }
+        if($images=='linepay'){
+            $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/linepay.png");
+        }
+        if($images=='truewallet'){
+            $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/truewallet.png");
+        }
+        if($images=='mbanking'){
+            $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/mbanking.png");
+        }
         if($images=='barcode'){
             $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/barcode.png");
         }
@@ -859,6 +868,24 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         if($routeurl=='background_qrwechat'){
         $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/afterplaceqrwechatorder");
         }
+        if($routeurl=='response_linepay'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/pendinglinepay");
+        }
+        if($routeurl=='background_linepay'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/afterplacelinepayorder");
+        }
+        if($routeurl=='response_truewallet'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/pendingtruewallet");
+        }
+        if($routeurl=='background_truewallet'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/afterplacetruewalletorder");
+        }
+        if($routeurl=='response_mbanking'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/pendingmbanking");
+        }
+        if($routeurl=='background_mbanking'){
+        $routeurl = $this->_urlBuilder->getUrl("gbprimepay/checkout/afterplacembankingorder");
+        }
         if($routeurl=='response_barcode'){
           $routeurl = $this->_urlBuilder->getUrl("checkout/onepage/success");
         }
@@ -912,6 +939,27 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         ));
     }
 
+    public function getInstructionLinepay()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_linepay/instructions'
+        ));
+    }
+
+    public function getInstructionTruewallet()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_truewallet/instructions'
+        ));
+    }
+
+    public function getInstructionMbanking()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_mbanking/instructions'
+        ));
+    }
+
     public function getInstructionBarcode()
     {
         return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
@@ -952,6 +1000,21 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/qrwechat.png");
         return $images;
     }
+    public function getLogoLinepay()
+    {
+        $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/linepay.png");
+        return $images;
+    }
+    public function getLogoTruewallet()
+    {
+        $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/truewallet.png");
+        return $images;
+    }
+    public function getLogoMbanking()
+    {
+        $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/mbanking.png");
+        return $images;
+    }
     public function getLogoBarcode()
     {
         $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/barcode.png");
@@ -990,6 +1053,27 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
             'gbprimepay/gbprimepay_qrwechat/title'
+        ));
+    }
+
+    public function getTitleLinepay()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_linepay/title'
+        ));
+    }
+
+    public function getTitleTruewallet()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_truewallet/title'
+        ));
+    }
+
+    public function getTitleMbanking()
+    {
+        return preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+            'gbprimepay/gbprimepay_mbanking/title'
         ));
     }
 
@@ -1135,6 +1219,27 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->getValue(
             'payment/gbprimepay_qrwechat/active'
+        );
+    }
+
+    public function getActiveLinepay()
+    {
+        return $this->scopeConfig->getValue(
+            'payment/gbprimepay_linepay/active'
+        );
+    }
+
+    public function getActiveTruewallet()
+    {
+        return $this->scopeConfig->getValue(
+            'payment/gbprimepay_truewallet/active'
+        );
+    }
+
+    public function getActiveMbanking()
+    {
+        return $this->scopeConfig->getValue(
+            'payment/gbprimepay_mbanking/active'
         );
     }
 

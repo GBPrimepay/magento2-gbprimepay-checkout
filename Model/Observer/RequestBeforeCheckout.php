@@ -74,7 +74,7 @@ public function __construct(
 
 if( $gateways ) {
     foreach( $gateways as $gateway ) {
-$gbpgateway = array('gbprimepay_direct','gbprimepay_installment','gbprimepay_qrcode','gbprimepay_qrcredit','gbprimepay_qrwechat','gbprimepay_barcode');
+$gbpgateway = array('gbprimepay_direct','gbprimepay_installment','gbprimepay_qrcode','gbprimepay_qrcredit','gbprimepay_qrwechat','gbprimepay_linepay','gbprimepay_truewallet','gbprimepay_mbanking','gbprimepay_barcode');
         if(in_array($gateway,$gbpgateway)){
             
         }
@@ -123,6 +123,32 @@ $all_arrterm_pass = (array_filter($all_arrterm_check));
                 if ($this->_config->getActiveQrwechat()) {  
                   $sortGateways[] = 'qrwechat';
                   $sortGatewaysTXT[] = 'QR Wechat';
+                  }
+      
+            }
+            if( $gateway == 'gbprimepay_linepay') {
+                if ($this->_config->getActiveLinepay()) {  
+                  $sortGateways[] = 'linepay';
+                  $sortGatewaysTXT[] = 'Rabbit Line Pay';
+                  }
+      
+            }
+            if( $gateway == 'gbprimepay_truewallet') {
+                if ($this->_config->getActiveTruewallet()) {  
+                  $sortGateways[] = 'truewallet';
+                  $sortGatewaysTXT[] = 'TrueMoney Wallet';
+                  }
+      
+            }
+            if( $gateway == 'gbprimepay_mbanking') {
+
+                if ($this->_config->getActiveMbanking()) {
+                $amount = $order->getQuote()->getBaseGrandTotal();
+                if(($amount  >= 20) && ($this->_config->getEnvironment() === 'production')){
+                    $sortGateways[] = 'mbanking';
+                    $sortGatewaysTXT[] = 'Mobile Banking';
+                }
+                
                   }
       
             }
@@ -223,6 +249,27 @@ $all_arrterm_pass = (array_filter($all_arrterm_check));
             $init_gbp['init_gateways']['qrwechat'] = array(
                 "enabled" => 'yes',
                 "display" => $this->_config->getTitleQrwechat(),
+            ); 
+        }
+
+        if ($this->_config->getActiveLinepay()) {
+            $init_gbp['init_gateways']['linepay'] = array(
+                "enabled" => 'yes',
+                "display" => $this->_config->getTitleLinepay(),
+            ); 
+        }
+
+        if ($this->_config->getActiveTruewallet()) {
+            $init_gbp['init_gateways']['truewallet'] = array(
+                "enabled" => 'yes',
+                "display" => $this->_config->getTitleTruewallet(),
+            ); 
+        }
+
+        if ($this->_config->getActiveMbanking()) {
+            $init_gbp['init_gateways']['mbanking'] = array(
+                "enabled" => 'yes',
+                "display" => $this->_config->getTitleMbanking(),
             ); 
         }
 

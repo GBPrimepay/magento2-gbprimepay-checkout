@@ -47,6 +47,9 @@ abstract class Checkout extends \Magento\Framework\App\Action\Action
     protected $gbprimepayQrcode;
     protected $gbprimepayQrcredit;
     protected $gbprimepayQrwechat;
+    protected $gbprimepayLinepay;
+    protected $gbprimepayTruewallet;
+    protected $gbprimepayMbanking;
     protected $gbprimepayBarcode;
     protected $_messageManager;
     protected $orderManagement;
@@ -87,6 +90,9 @@ abstract class Checkout extends \Magento\Framework\App\Action\Action
         \GBPrimePay\Checkout\Model\GBPrimePayQrcode $gbprimepayQrcode,
         \GBPrimePay\Checkout\Model\GBPrimePayQrcredit $gbprimepayQrcredit,
         \GBPrimePay\Checkout\Model\GBPrimePayQrwechat $gbprimepayQrwechat,
+        \GBPrimePay\Checkout\Model\GBPrimePayLinepay $gbprimepayLinepay,
+        \GBPrimePay\Checkout\Model\GBPrimePayTruewallet $gbprimepayTruewallet,
+        \GBPrimePay\Checkout\Model\GBPrimePayMbanking $gbprimepayMbanking,
         \GBPrimePay\Checkout\Model\GBPrimePayBarcode $gbprimepayBarcode,
         \Magento\Sales\Model\ResourceModel\Order\Payment\Collection $collectionFactory,
         \Magento\Sales\Api\OrderManagementInterface $orderManagement,
@@ -102,6 +108,9 @@ abstract class Checkout extends \Magento\Framework\App\Action\Action
         $this->gbprimepayQrcode = $gbprimepayQrcode;
         $this->gbprimepayQrcredit = $gbprimepayQrcredit;
         $this->gbprimepayQrwechat = $gbprimepayQrwechat;
+        $this->gbprimepayLinepay = $gbprimepayLinepay;
+        $this->gbprimepayTruewallet = $gbprimepayTruewallet;
+        $this->gbprimepayMbanking = $gbprimepayMbanking;
         $this->gbprimepayBarcode = $gbprimepayBarcode;
         $this->gbprimepayLogger = $gbprimepayLogger;
         $this->customerRepository = $customerRepository;

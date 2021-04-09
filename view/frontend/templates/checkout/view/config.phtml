@@ -42,6 +42,18 @@ $assignQrwechat = $block->getUrl("gbprimepay/checkout/eventsassignqrwechat");
 $responseQrwechat = $block->getUrl("gbprimepay/checkout/responseqrwechat");
 $generateQrwechat = $block->getGenerateQrwechat();
 
+$beforeLinepay = $block->getUrl("gbprimepay/checkout/eventsbeforelinepay");
+$assignLinepay = $block->getUrl("gbprimepay/checkout/eventsassignlinepay");
+$imgpathLinepay = $configData->getIssuerImgPath();
+
+$beforeTruewallet = $block->getUrl("gbprimepay/checkout/eventsbeforetruewallet");
+$assignTruewallet = $block->getUrl("gbprimepay/checkout/eventsassigntruewallet");
+$imgpathTruewallet = $configData->getIssuerImgPath();
+
+$beforeMbanking = $block->getUrl("gbprimepay/checkout/eventsbeforembanking");
+$assignMbanking = $block->getUrl("gbprimepay/checkout/eventsassignmbanking");
+$imgpathMbanking = $configData->getIssuerImgPath();
+
 $beforeBarcode = $block->getUrl("gbprimepay/checkout/eventsbeforebarcode");
 $assignBarcode = $block->getUrl("gbprimepay/checkout/eventsassignbarcode");
 $responseBarcode = $block->getUrl("gbprimepay/checkout/responsebarcode");
@@ -109,6 +121,24 @@ ksort($countrySel);
     window.gbprimepay.titleQrwechat = '<?php echo $configData->getTitleQrwechat(); ?>';
     window.gbprimepay.instructionQrwechat = '<?php echo $configData->getInstructionQrwechat(); ?>';
     window.gbprimepay.generateQrwechat = '<?php echo $generateQrwechat; ?>';
+
+    window.gbprimepay.beforeLinepay = '<?php echo $beforeLinepay; ?>';
+    window.gbprimepay.assignLinepay = '<?php echo $assignLinepay; ?>';
+    window.gbprimepay.imgpathLinepay = '<?php echo $imgpathLinepay; ?>';
+    window.gbprimepay.titleLinepay = '<?php echo $configData->getTitleLinepay(); ?>';
+    window.gbprimepay.instructionLinepay = '<?php echo $configData->getInstructionLinepay(); ?>';
+
+    window.gbprimepay.beforeTruewallet = '<?php echo $beforeTruewallet; ?>';
+    window.gbprimepay.assignTruewallet = '<?php echo $assignTruewallet; ?>';
+    window.gbprimepay.imgpathTruewallet = '<?php echo $imgpathTruewallet; ?>';
+    window.gbprimepay.titleTruewallet = '<?php echo $configData->getTitleTruewallet(); ?>';
+    window.gbprimepay.instructionTruewallet = '<?php echo $configData->getInstructionTruewallet(); ?>';
+
+    window.gbprimepay.beforeMbanking = '<?php echo $beforeMbanking; ?>';
+    window.gbprimepay.assignMbanking = '<?php echo $assignMbanking; ?>';
+    window.gbprimepay.imgpathMbanking = '<?php echo $imgpathMbanking; ?>';
+    window.gbprimepay.titleMbanking = '<?php echo $configData->getTitleMbanking(); ?>';
+    window.gbprimepay.instructionMbanking = '<?php echo $configData->getInstructionMbanking(); ?>';
 
     window.gbprimepay.beforeBarcode = '<?php echo $beforeBarcode; ?>';
     window.gbprimepay.assignBarcode = '<?php echo $assignBarcode; ?>';

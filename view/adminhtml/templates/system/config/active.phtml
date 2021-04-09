@@ -134,13 +134,85 @@
                     success: function (response) {
                         var result_token = $('#auth_token_result_active_callback_qrwechat_transaction_button');
                         if (response.success) {
-                            $("button#active_callback_qrwechat_transaction_button span#span-for-active-button").html("GBPrimePay QR Visa : Active");
+                            $("button#active_callback_qrwechat_transaction_button span#span-for-active-button").html("GBPrimePay QR Wechat : Active");
                             $('button#active_callback_qrwechat_transaction_button button.action-validate-get-auth-token.gbprimepay-button-callback').addClass("callback-actived");
                             result_token.removeClass('hide').addClass('success');
                             result_token.html(response.message);
                         }
                         if (response.error) {
-                            $("button#active_callback_qrwechat_transaction_button span#span-for-active-button").html("GBPrimePay QR Visa : Error");
+                            $("button#active_callback_qrwechat_transaction_button span#span-for-active-button").html("GBPrimePay QR Wechat : Error");
+                            result_token.removeClass('hide').addClass('error');
+                            result_token.html(response.message);
+                        }
+                    }
+                });
+            });
+
+            $('#active_callback_linepay_transaction_button').click(function () {
+                var url = '<?php echo $block->getUrl('gbprimepay/system_config/activeCallbackLinepay'); ?>';
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    showLoader: true,
+                    success: function (response) {
+                        var result_token = $('#auth_token_result_active_callback_linepay_transaction_button');
+                        if (response.success) {
+                            $("button#active_callback_linepay_transaction_button span#span-for-active-button").html("GBPrimePay Rabbit Line Pay : Active");
+                            $('button#active_callback_linepay_transaction_button button.action-validate-get-auth-token.gbprimepay-button-callback').addClass("callback-actived");
+                            result_token.removeClass('hide').addClass('success');
+                            result_token.html(response.message);
+                        }
+                        if (response.error) {
+                            $("button#active_callback_linepay_transaction_button span#span-for-active-button").html("GBPrimePay Rabbit Line Pay : Error");
+                            result_token.removeClass('hide').addClass('error');
+                            result_token.html(response.message);
+                        }
+                    }
+                });
+            });
+
+            $('#active_callback_truewallet_transaction_button').click(function () {
+                var url = '<?php echo $block->getUrl('gbprimepay/system_config/activeCallbackTruewallet'); ?>';
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    showLoader: true,
+                    success: function (response) {
+                        var result_token = $('#auth_token_result_active_callback_truewallet_transaction_button');
+                        if (response.success) {
+                            $("button#active_callback_truewallet_transaction_button span#span-for-active-button").html("GBPrimePay TrueMoney Wallet : Active");
+                            $('button#active_callback_truewallet_transaction_button button.action-validate-get-auth-token.gbprimepay-button-callback').addClass("callback-actived");
+                            result_token.removeClass('hide').addClass('success');
+                            result_token.html(response.message);
+                        }
+                        if (response.error) {
+                            $("button#active_callback_truewallet_transaction_button span#span-for-active-button").html("GBPrimePay TrueMoney Wallet : Error");
+                            result_token.removeClass('hide').addClass('error');
+                            result_token.html(response.message);
+                        }
+                    }
+                });
+            });
+
+            $('#active_callback_mbanking_transaction_button').click(function () {
+                var url = '<?php echo $block->getUrl('gbprimepay/system_config/activeCallbackMbanking'); ?>';
+
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    showLoader: true,
+                    success: function (response) {
+                        var result_token = $('#auth_token_result_active_callback_mbanking_transaction_button');
+                        if (response.success) {
+                            $("button#active_callback_mbanking_transaction_button span#span-for-active-button").html("GBPrimePay Mobile Banking : Active");
+                            $('button#active_callback_mbanking_transaction_button button.action-validate-get-auth-token.gbprimepay-button-callback').addClass("callback-actived");
+                            result_token.removeClass('hide').addClass('success');
+                            result_token.html(response.message);
+                        }
+                        if (response.error) {
+                            $("button#active_callback_mbanking_transaction_button span#span-for-active-button").html("GBPrimePay Mobile Banking : Error");
                             result_token.removeClass('hide').addClass('error');
                             result_token.html(response.message);
                         }

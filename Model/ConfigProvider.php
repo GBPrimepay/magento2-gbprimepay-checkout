@@ -12,6 +12,9 @@ use GBPrimePay\Checkout\Model\GBPrimePayInstallment;
 use GBPrimePay\Checkout\Model\GBPrimePayQrcode;
 use GBPrimePay\Checkout\Model\GBPrimePayQrcredit;
 use GBPrimePay\Checkout\Model\GBPrimePayQrwechat;
+use GBPrimePay\Checkout\Model\GBPrimePayLinepay;
+use GBPrimePay\Checkout\Model\GBPrimePayTruewallet;
+use GBPrimePay\Checkout\Model\GBPrimePayMbanking;
 use GBPrimePay\Checkout\Model\GBPrimePayBarcode;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\Escaper;
@@ -26,6 +29,9 @@ class ConfigProvider implements ConfigProviderInterface
         GBPrimePayQrcode::CODE,
         GBPrimePayQrcredit::CODE,
         GBPrimePayQrwechat::CODE,
+        GBPrimePayLinepay::CODE,
+        GBPrimePayTruewallet::CODE,
+        GBPrimePayMbanking::CODE,
         GBPrimePayBarcode::CODE
     ];
 

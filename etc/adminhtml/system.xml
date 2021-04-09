@@ -27,6 +27,9 @@
             <include path="GBPrimePay_Checkout::system/gbprimepay_qrcode.xml"/>
             <include path="GBPrimePay_Checkout::system/gbprimepay_qrcredit.xml"/>
             <include path="GBPrimePay_Checkout::system/gbprimepay_qrwechat.xml"/>
+            <include path="GBPrimePay_Checkout::system/gbprimepay_linepay.xml"/>
+            <include path="GBPrimePay_Checkout::system/gbprimepay_truewallet.xml"/>
+            <include path="GBPrimePay_Checkout::system/gbprimepay_mbanking.xml"/>
             <include path="GBPrimePay_Checkout::system/gbprimepay_barcode.xml"/>
 
     </section>

@@ -146,19 +146,19 @@ if (!empty($callback['merchantId']) && !empty($callback['initialShop']) && !empt
       echo '<br>';
 
 
-        $data = "{\r\n\"rememberCard\": false,\r\n\"card\": {\r\n\"number\": \"4987654321098769\",\r\n\"expirationMonth\": \"05\",\r\n\"expirationYear\": \"21\",\r\n\"securityCode\": \"111\",\r\n\"name\": \"ปัฐนันท์ เทศแท้\"\r\n}\r\n}";
-      $url = Constant::URL_API_TEST;
-      $callback = $this->_config->sendAPICurl($url, $data, 'POST');
-      if ($this->_config->getCanDebug()) {
-          $this->gbprimepayLogger->addDebug("URL_API_TEST //" . print_r($callback, true));
-      }
-      echo '<br>sendAPICurl';
-      print_r($callback);
-      echo '<br>';
-      echo $callback['resultCode'];
-      echo '<br>';
-      echo $callback['card']['token'];
-      echo '<br>';
+      //   $data = "{\r\n\"rememberCard\": false,\r\n\"card\": {\r\n\"number\": \"4987654321098769\",\r\n\"expirationMonth\": \"05\",\r\n\"expirationYear\": \"21\",\r\n\"securityCode\": \"111\",\r\n\"name\": \"ปัฐนันท์ เทศแท้\"\r\n}\r\n}";
+      // $url = Constant::URL_API_TEST;
+      // $callback = $this->_config->sendAPICurl($url, $data, 'POST');
+      // if ($this->_config->getCanDebug()) {
+      //     $this->gbprimepayLogger->addDebug("URL_API_TEST //" . print_r($callback, true));
+      // }
+      // echo '<br>sendAPICurl';
+      // print_r($callback);
+      // echo '<br>';
+      // echo $callback['resultCode'];
+      // echo '<br>';
+      // echo $callback['card']['token'];
+      // echo '<br>';
 
       echo '</pre>';
       echo 'qrcode<br>';

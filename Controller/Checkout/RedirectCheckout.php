@@ -39,11 +39,11 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                 $_transaction_info = $this->_config->getGBPTransactionINFO();
                 $_transaction_amt = $this->_config->getGBPTransactionAMT();
                 $JSON_GET = $this->_config->getGBPTransactionITEM();
+  
 
                 $json_payment_data = html_entity_decode($JSON_GET['payment_data']);
-                $paymentArray = json_decode($json_payment_data, true);
-                $payment_referenceNo = ''.substr(time(), 4, 5).'00'.$_orderId;               
-
+                $paymentArray = json_decode($json_payment_data, true);         
+                $payment_referenceNo = ''.substr(time(), 4, 5).'00'.$_orderId;       
                 $paymentArray["payment_detail"] = 'Charge for order ' . $_getIncrementId;
                 $paymentArray["payment_referenceNo"] = $payment_referenceNo;
                 $paymentArray["payment_merchantDefined3"] = $payment_referenceNo;
@@ -53,7 +53,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
   $res =  '';
   $res .=  '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' .
           '<html><head>' .
-          '<script type="text/javascript"> function OnLoadEvent() { setTimeout(function(){document.form.submit();}, 1000); }</script>' .
+          '<script type="text/javascript"> function OnLoadEvent() { var interval = setInterval(function () { document.createElement(\'form\').submit.call(document.getElementById(\'form\'));}, 1000); }</script>' .
           '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />' .          
           '<meta name="viewport" content="width=device-width, initial-scale=1">' .
           '<title>GBPrimePay Payments</title></head>' .
@@ -61,7 +61,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '<body OnLoad="OnLoadEvent();">' .
           '<div class="gbp_global_loader"><div class="gbp_loader"></div></div>'.
           '<main><div>GBPrimePay Checkout, Invoking Secure Payment, Please Wait ..</div></main>'.
-          '<form name="form" action="'. $JSON_GET['page'].'" method="post"  target="_top">' .
+          '<form id="form" name="form" action="'. $JSON_GET['page'].'" method="post"  target="_top">' .
           '<input type="hidden" name="serialID" value="'. $JSON_GET['serialID'].'">' .
           '<input type="hidden" name="domain" value="'. $JSON_GET['domain'].'">' .
           '<input type="hidden" name="platform" value="'. $JSON_GET['platform'].'">' .
@@ -179,9 +179,6 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
             }    
           }
           '';
-          // $json_payment_data = html_entity_decode($JSON_GET['payment_data']);
-          // $paymentArray = json_decode($json_payment_data, true);
-          // print_r($paymentArray);
           if(isset($paymentArray)){
             $keys = array_keys($paymentArray);
                 foreach($paymentArray as $key => $value) {
@@ -225,10 +222,8 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '</form></body></html>';
 echo $res;
 
-$_item = array();
-$new_transaction_key = $this->_config->generateID();
 
-$this->_config->setGBPTransactionITEM($_item);
+$new_transaction_key = $this->_config->generateID();
 $this->_config->setGBPTransactionKEY($new_transaction_key);
 $this->_config->setGBPTransactionINFO($_transaction_info);
 $this->_config->setGBPTransactionID($_transaction_id);
@@ -241,7 +236,6 @@ $this->_config->setGBPTransactionAMT($_transaction_amt);
             } else {
                 return $this->resultRedirectFactory->create()->setPath('checkout/cart');
             }
-        exit;
       } catch (\Exception $exception) {
           if ($this->_config->getCanDebug()) {
               $this->gbprimepayLogger->addDebug("RedirectCheckout error //" . $exception->getMessage());

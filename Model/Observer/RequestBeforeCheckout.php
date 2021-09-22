@@ -177,7 +177,9 @@ $all_arrterm_pass = (array_filter($all_arrterm_check));
     $init_gbp = array();
     $checkout_select_method = $sortGateways[0];
     $checkout_sort_method = $sortGateways;
-
+    
+    $payment = \Magento\Framework\App\ObjectManager::getInstance();
+    $order = $payment->get('\Magento\Checkout\Model\Cart');
     $transaction_getid = $order->getQuote()->getId();
     $transaction_quoteid = ''.substr(time(), 4, 5).'00'.$transaction_getid;
 

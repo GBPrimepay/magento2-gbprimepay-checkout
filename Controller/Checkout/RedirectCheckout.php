@@ -39,10 +39,10 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                 $_transaction_info = $this->_config->getGBPTransactionINFO();
                 $_transaction_amt = $this->_config->getGBPTransactionAMT();
                 $JSON_GET = $this->_config->getGBPTransactionITEM();
-  
 
                 $json_payment_data = html_entity_decode($JSON_GET['payment_data']);
                 $paymentArray = json_decode($json_payment_data, true);         
+
                 $payment_referenceNo = ''.substr(time(), 4, 5).'00'.$_orderId;       
                 $paymentArray["payment_detail"] = 'Charge for order ' . $_getIncrementId;
                 $paymentArray["payment_referenceNo"] = $payment_referenceNo;
@@ -221,13 +221,6 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '</noscript>' .
           '</form></body></html>';
 echo $res;
-
-
-$new_transaction_key = $this->_config->generateID();
-$this->_config->setGBPTransactionKEY($new_transaction_key);
-$this->_config->setGBPTransactionINFO($_transaction_info);
-$this->_config->setGBPTransactionID($_transaction_id);
-$this->_config->setGBPTransactionAMT($_transaction_amt);
                 }else {
                     $this->cancelOrder();
                     $this->checkoutSession->restoreQuote();

@@ -114,12 +114,12 @@ define(
                   dataType: "json",
                   success: function (response) {
                       if (response.success) {
-                          fullScreenLoader.stopLoader();
                           $("input[name='payment[transaction_id]']").val(response.transaction_id);
                           $("input[name='payment[transaction_key]']").val(response.transaction_key);
                           $("input[name='transaction_info']").val(response.transaction_info);
                           $('#GBPCdummy').html(response.transaction_info);
                           $('#GBPCdummy').attr('data-info', response.transaction_info);
+                          fullScreenLoader.stopLoader();
                           self.isPlaceOrderActionAllowed(true);
                       }
                       if (response.error) {

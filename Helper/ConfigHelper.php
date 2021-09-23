@@ -1473,6 +1473,26 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->checkoutSession->getGBPTransactionITEM();
     }
+    public function unsGBPTransactionITEM()
+    {
+        return $this->checkoutSession->unsGBPTransactionITEM();
+    }
+    public function unsGBPTransactionKEY()
+    {
+        return $this->checkoutSession->unsGBPTransactionKEY();
+    }
+    public function unsGBPTransactionINFO()
+    {
+        return $this->checkoutSession->unsGBPTransactionINFO();
+    }
+    public function unsGBPTransactionID()
+    {
+        return $this->checkoutSession->unsGBPTransactionID();
+    }
+    public function unsGBPTransactionAMT()
+    {
+        return $this->checkoutSession->unsGBPTransactionAMT();
+    }
     public function convertCountryCodeToIso3($iso2Code)
     {
         /**

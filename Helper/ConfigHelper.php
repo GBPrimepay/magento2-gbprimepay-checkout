@@ -111,8 +111,8 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         if($images=='026'){
             $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/issuerBank026.png");
         }
-        if($images=='065'){
-            $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/issuerBank065.png");
+        if($images=='011'){
+            $images = $this->_assetRepo->getUrl("GBPrimePay_Checkout::images/issuerBank011.png");
         }
 
         return $images;
@@ -1116,6 +1116,11 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
                 'gbprimepay/gbprimepay_installment/scb_installment_term'
             ));
         }
+        if($issuer=='bbl'){
+            $issuer = preg_replace('/\s+|\n+|\r/', ' ', $this->scopeConfig->getValue(
+                'gbprimepay/gbprimepay_installment/bbl_installment_term'
+            ));
+        }
         return $issuer;
     }
 
@@ -1290,6 +1295,9 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         case 'scb':
           $pass_array = array(3, 4, 6, 10);
         break;
+        case 'bbl':
+          $pass_array = array(3, 4, 6, 8, 9, 10);
+        break;
       }
       $regex = '/^[0-9 ]+(?:,[0-9 ]+)*$/';
       if (preg_match($regex, $string) === 1) {
@@ -1324,8 +1332,8 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
             $objPass['krungthai']['txt'] = 'Krung Thai Bank Public Company Limited.';
         break;
         case 'thanachart':
-            $objPass['thanachart']['id'] = '065';
-            $objPass['thanachart']['txt'] = 'Thanachart Bank Public Company Limited.';
+            $objPass['thanachart']['id'] = '011';
+            $objPass['thanachart']['txt'] = 'TMBThanachart Bank Public Company Limited.';
         break;
         case 'ayudhya':
             $objPass['ayudhya']['id'] = '025';
@@ -1338,6 +1346,10 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         case 'scb':
             $objPass['scb']['id'] = '014';
             $objPass['scb']['txt'] = 'Siam Commercial Bank Public Company Limited.';
+        break;
+        case 'bbl':
+            $objPass['bbl']['id'] = '002';
+            $objPass['bbl']['txt'] = 'Bangkok Bank Public Company Limited.';
         break;
       }
       $arrpassterm = array();
@@ -1367,6 +1379,9 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
                 case 'scb':
                     $objPass['scb']['term'] = $arrpassterm;
                 break;
+                case 'bbl':
+                    $objPass['bbl']['term'] = $arrpassterm;
+                break;
               }
           }
           }
@@ -1387,7 +1402,7 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
           $echoterm .= '<optgroup label="TextValue[\'Krung Thai Bank Public Company Limited.\',\'006\']">';
         break;
         case 'thanachart':
-          $echoterm .= '<optgroup label="TextValue[\'Thanachart Bank Public Company Limited.\',\'065\']">';
+          $echoterm .= '<optgroup label="TextValue[\'TMBThanachart Bank Public Company Limited.\',\'011\']">';
         break;
         case 'ayudhya':
           $echoterm .= '<optgroup label="TextValue[\'Bank of Ayudhya Public Company Limited.\',\'025\']">';
@@ -1397,6 +1412,9 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
         break;
         case 'scb':
           $echoterm .= '<optgroup label="TextValue[\'Siam Commercial Bank Public Company Limited.\',\'014\']">';
+        break;
+        case 'bbl':
+          $echoterm .= '<optgroup label="TextValue[\'Bangkok Bank Public Company Limited.\',\'002\']">';
         break;
       }
 

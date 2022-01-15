@@ -99,7 +99,7 @@ class GBPrimePayInstallment extends \Magento\Payment\Model\Method\AbstractMethod
         $payment = \Magento\Framework\App\ObjectManager::getInstance();
         $order = $payment->get('\Magento\Checkout\Model\Cart');
         $amount = $order->getQuote()->getBaseGrandTotal();
-        $all_installment_term = $this->_config->getTermInstallment('kasikorn').', '.$this->_config->getTermInstallment('krungthai').', '.$this->_config->getTermInstallment('thanachart').', '.$this->_config->getTermInstallment('ayudhya').', '.$this->_config->getTermInstallment('firstchoice').', '.$this->_config->getTermInstallment('scb');
+        $all_installment_term = $this->_config->getTermInstallment('kasikorn').', '.$this->_config->getTermInstallment('krungthai').', '.$this->_config->getTermInstallment('thanachart').', '.$this->_config->getTermInstallment('ayudhya').', '.$this->_config->getTermInstallment('firstchoice').', '.$this->_config->getTermInstallment('scb').', '.$this->_config->getTermInstallment('bbl');
         $all_arrterm_check = explode(',',preg_replace('/\s+/', '', $all_installment_term));
         $all_arrterm_pass = (array_filter($all_arrterm_check));
             if(($amount  >= 3000) && (($amount /(min($all_arrterm_pass))) >= 500)){

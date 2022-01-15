@@ -39,6 +39,7 @@
               <ayudhya_installment_term>3, 4, 6, 9, 10</ayudhya_installment_term>
               <firstchoice_installment_term>3, 4, 6, 9, 10, 12, 18, 24</firstchoice_installment_term>
               <scb_installment_term>3, 4, 6, 10</scb_installment_term>
+              <bbl_installment_term>3, 4, 6, 8, 9, 10</bbl_installment_term>
               <sort_order>30</sort_order>
               <model>GBPrimePay\Checkout\Model\GBPrimePayInstallment</model>
           </gbprimepay_installment>

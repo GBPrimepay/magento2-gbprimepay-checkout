@@ -92,7 +92,7 @@ $gbpgateway = array('gbprimepay_direct','gbprimepay_installment','gbprimepay_qrc
                 if ($this->_config->getActiveInstallment()) {
                 
 $amount = $order->getQuote()->getBaseGrandTotal();
-$all_installment_term = $this->_config->getTermInstallment('kasikorn').', '.$this->_config->getTermInstallment('krungthai').', '.$this->_config->getTermInstallment('thanachart').', '.$this->_config->getTermInstallment('ayudhya').', '.$this->_config->getTermInstallment('firstchoice').', '.$this->_config->getTermInstallment('scb');
+$all_installment_term = $this->_config->getTermInstallment('kasikorn').', '.$this->_config->getTermInstallment('krungthai').', '.$this->_config->getTermInstallment('thanachart').', '.$this->_config->getTermInstallment('ayudhya').', '.$this->_config->getTermInstallment('firstchoice').', '.$this->_config->getTermInstallment('scb').', '.$this->_config->getTermInstallment('bbl');
 $all_arrterm_check = explode(',',preg_replace('/\s+/', '', $all_installment_term));
 $all_arrterm_pass = (array_filter($all_arrterm_check));
             if(($amount  >= 3000) && (($amount /(min($all_arrterm_pass))) >= 500)){
@@ -232,6 +232,7 @@ $all_arrterm_pass = (array_filter($all_arrterm_check));
                 "ayudhya_installment_term" => $this->_config->getTermInstallment('ayudhya'),
                 "firstchoice_installment_term" => $this->_config->getTermInstallment('firstchoice'),
                 "scb_installment_term" => $this->_config->getTermInstallment('scb'),
+                "bbl_installment_term" => $this->_config->getTermInstallment('bbl'),
             ); 
         }
         if ($this->_config->getActiveQrcode()) {

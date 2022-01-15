@@ -51,6 +51,7 @@ class EventsBeforeInstallment extends \GBPrimePay\Checkout\Controller\Checkout
                 $check_ayudhya_it = $this->_config->check_term_regex($this->_config->getTermInstallment('ayudhya'),'ayudhya');
                 $check_firstchoice_it = $this->_config->check_term_regex($this->_config->getTermInstallment('firstchoice'),'firstchoice');
                 $check_scb_it = $this->_config->check_term_regex($this->_config->getTermInstallment('scb'),'scb');
+                $check_bbl_it = $this->_config->check_term_regex($this->_config->getTermInstallment('bbl'),'bbl');
 
                 $obj_kasikorn_it = $this->_config->obj_term_regex($check_kasikorn_it,'kasikorn',$itemamount);
                 $obj_krungthai_it = $this->_config->obj_term_regex($check_krungthai_it,'krungthai',$itemamount);
@@ -58,6 +59,7 @@ class EventsBeforeInstallment extends \GBPrimePay\Checkout\Controller\Checkout
                 $obj_ayudhya_it = $this->_config->obj_term_regex($check_ayudhya_it,'ayudhya',$itemamount);
                 $obj_firstchoice_it = $this->_config->obj_term_regex($check_firstchoice_it,'firstchoice',$itemamount);
                 $obj_scb_it = $this->_config->obj_term_regex($check_scb_it,'scb',$itemamount);
+                $obj_bbl_it = $this->_config->obj_term_regex($check_bbl_it,'bbl',$itemamount);
 
                 if(!empty($obj_kasikorn_it)){
                     $objIssuers['issuers']['kasikorn'] = $obj_kasikorn_it['kasikorn'];
@@ -76,6 +78,9 @@ class EventsBeforeInstallment extends \GBPrimePay\Checkout\Controller\Checkout
                 }
                 if(!empty($obj_scb_it)){
                     $objIssuers['issuers']['scb'] = $obj_scb_it['scb'];
+                }
+                if(!empty($obj_bbl_it)){
+                    $objIssuers['issuers']['bbl'] = $obj_bbl_it['bbl'];
                 }
               return $this->jsonFactory->create()->setData([
                   'success' => true,

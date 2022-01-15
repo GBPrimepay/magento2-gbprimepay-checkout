@@ -38,31 +38,37 @@
         <field id="krungthai_installment_term" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>KRUNG THAI</label>
             <config_path>gbprimepay/gbprimepay_installment/krungthai_installment_term</config_path>
-            <comment><![CDATA[Kasikornbank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 5, 6, 7, 8, 9, 10</b>]]></comment>
+            <comment><![CDATA[Krung Thai Bank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 5, 6, 7, 8, 9, 10</b>]]></comment>
         </field>
 
         <field id="thanachart_installment_term" translate="label" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-            <label>THANACHART</label>
+            <label>TTB</label>
             <config_path>gbprimepay/gbprimepay_installment/thanachart_installment_term</config_path>
-            <comment><![CDATA[Kasikornbank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 10</b>]]></comment>
+            <comment><![CDATA[TMBThanachart Bank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 10</b>]]></comment>
         </field>
 
         <field id="ayudhya_installment_term" translate="label" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>AYUDHYA</label>
             <config_path>gbprimepay/gbprimepay_installment/ayudhya_installment_term</config_path>
-            <comment><![CDATA[Kasikornbank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 9, 10</b>]]></comment>
+            <comment><![CDATA[Bank of Ayudhya Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 9, 10</b>]]></comment>
         </field>
 
         <field id="firstchoice_installment_term" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>FIRST CHOICE</label>
             <config_path>gbprimepay/gbprimepay_installment/firstchoice_installment_term</config_path>
-            <comment><![CDATA[Kasikornbank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 9, 10, 12, 18, 24</b>]]></comment>
+            <comment><![CDATA[Krungsri First Choice. <br/>Installment Terms. default: <b>3, 4, 6, 9, 10, 12, 18, 24</b>]]></comment>
         </field>
 
         <field id="scb_installment_term" translate="label" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
             <label>SCB</label>
             <config_path>gbprimepay/gbprimepay_installment/scb_installment_term</config_path>
-            <comment><![CDATA[Kasikornbank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 10</b>]]></comment>
+            <comment><![CDATA[Siam Commercial Bank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 10</b>]]></comment>
+        </field>
+
+        <field id="bbl_installment_term" translate="label" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <label>BBL</label>
+            <config_path>gbprimepay/gbprimepay_installment/bbl_installment_term</config_path>
+            <comment><![CDATA[Bangkok Bank Public Company Limited. <br/>Installment Terms. default: <b>3, 4, 6, 8, 9, 10</b>]]></comment>
         </field>
 
         <field id="sort_order" translate="label" type="text" sortOrder="299" showInDefault="1" showInWebsite="1" showInStore="1">

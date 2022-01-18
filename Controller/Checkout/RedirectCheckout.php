@@ -42,8 +42,14 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                 
                 if(isset($JSON_GET["payment_data"]) && !empty($JSON_GET["payment_data"])){
                   $json_payment_data = html_entity_decode($JSON_GET['payment_data']);
-                  $paymentArray = json_decode($json_payment_data, true);         
-  
+                  $paymentArray = json_decode($json_payment_data, true);
+                  if(isset($order->debug()["base_grand_total"]) && !empty($order->debug()["base_grand_total"])){
+                    $get_amount = number_format((($order->debug()["base_grand_total"] * 100)/100), 2, '.', '');
+                    $arr_amount = number_format((($paymentArray["payment_amount"] * 100)/100), 2, '.', '');
+                    if($arr_amount != $get_amount){
+                      $paymentArray["payment_amount"] = $get_amount;
+                    }
+                  }  
                   $payment_referenceNo = ''.substr(time(), 4, 5).'00'.$_orderId;       
                   $paymentArray["payment_detail"] = 'Charge for order ' . $_getIncrementId;
                   $paymentArray["payment_referenceNo"] = $payment_referenceNo;

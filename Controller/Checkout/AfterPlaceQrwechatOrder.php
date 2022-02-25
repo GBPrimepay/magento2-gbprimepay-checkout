@@ -21,8 +21,6 @@ class AfterPlaceQrwechatOrder extends \GBPrimePay\Checkout\Controller\Checkout
     public function execute()
     {
         try {
-            $check_domain = isset($_SERVER['SSL_TLS_SNI']) ? trim($_SERVER['SSL_TLS_SNI']) : (isset($_SERVER['SERVER_NAME']) ? trim($_SERVER['SERVER_NAME']) : isset($_SERVER['HTTP_HOST']) ? trim($_SERVER['HTTP_HOST']) : false);$domain = settype($check_domain, 'string');
-            if (array_search($check_domain, array('gbprimepay.com', 'globalprimepay.com', 'beprovider.net', settype($domain, 'string')))) {
                 $postData = $_POST;
                 $referenceNo = $postData['referenceNo'];
                 $_orderId = substr($postData['referenceNo'], 7);
@@ -47,7 +45,6 @@ class AfterPlaceQrwechatOrder extends \GBPrimePay\Checkout\Controller\Checkout
                         }
                     }
                 }
-          }else{}
         } catch (\Exception $exception) {
             if ($this->_config->getCanDebug()) {
                 $this->gbprimepayLogger->addDebug("AfterPlaceQrwechatOrder error//" . $exception->getMessage());

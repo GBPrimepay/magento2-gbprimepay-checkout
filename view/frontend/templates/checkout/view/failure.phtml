@@ -11,8 +11,6 @@ $isEnableSave = $configData->getIsSave();
 $cards = $block->getDataCard();
 $customerId = $block->customerSession->getCustomerId() ? '1' : '0';
 $baseUrl = $block->getBaseUrl();
-$transaction = $block->getTransactionCancel();
-$_form_key = $transaction['transaction_form'];
 $returnUrlSuccess = $block->getUrl("checkout/onepage/success");
 $returnUrlFailed = $block->getUrl("checkout/cart");
 

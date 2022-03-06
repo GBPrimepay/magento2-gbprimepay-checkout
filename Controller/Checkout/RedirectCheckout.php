@@ -50,6 +50,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                       $paymentArray["payment_amount"] = $get_amount;
                     }
                   }  
+
                   $payment_referenceNo = ''.substr(time(), 4, 5).'00'.$_orderId;       
                   $paymentArray["payment_detail"] = 'Charge for order ' . $_getIncrementId;
                   $paymentArray["payment_referenceNo"] = $payment_referenceNo;
@@ -57,7 +58,9 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                 }
 
                 if(isset($JSON_GET["page"]) && !empty($JSON_GET["page"]) && (($JSON_GET["serialID"]) == $_transaction_key) && isset($JSON_GET["payment_data"]) && !empty($JSON_GET["payment_data"])){
-
+  $nGenerateID = $this->_config->generateID();
+  $JSON_GET['serialID'] = $nGenerateID;
+  $paymentArray["payment_merchantDefined1"] = $nGenerateID;
   $res =  '';
   $res .=  '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' .
           '<html><head>' .

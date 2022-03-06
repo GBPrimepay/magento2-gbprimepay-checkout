@@ -45,9 +45,9 @@
 
 
         <form class="form" data-bind="attr: {'id': getCode() + '-form'}">
-          <div class="field type" style="display:none;">
+          <div class="field type" style="display:block;">
               <div class="control">
-                  <input type="text"
+                  <input type="hidden"
                          name="payment[transaction_id]"
                          class="input-text"
                          value=""
@@ -56,9 +56,9 @@
                          ">
               </div>
           </div>
-          <div class="field type" style="display:none;">
+          <div class="field type" style="display:block;">
             <div class="control">
-                <input type="text"
+                <input type="hidden"
                        name="payment[transaction_key]"
                        class="input-text"
                        value=""

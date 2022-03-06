@@ -336,7 +336,6 @@ abstract class Checkout extends \Magento\Framework\App\Action\Action
         $order->registerCancellation('Order canceled by customer')->save();
         $quote = $this->quoteRepository->get($order->getQuoteId());
             if ($quote->getId()){
-                $quote = $this->quoteRepository->get($order->getQuoteId());
                 $quote->setIsActive(1)->setReservedOrderId(null);
                 $this->quoteRepository->save($quote);
             }

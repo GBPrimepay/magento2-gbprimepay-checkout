@@ -227,7 +227,7 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
       {
         $microtime = md5(microtime());
         $encoded = $this->encode($microtime , $this->getDomain());
-        $serial = implode('-', str_split(substr(strtolower($encoded), 0, 32), 5));
+        $serial = implode('-', str_split(substr(strtolower($encoded), rand(10,30), 32), 5));
         return $serial;
       }
     public function getMerchantId()

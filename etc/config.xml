@@ -7,6 +7,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
     <default>
+        <csp>
+            <policies>
+                <storefront>
+                    <frame-ancestors>
+                        <inline>0</inline>
+                    </frame-ancestors>
+                </storefront>
+            </policies>
+        </csp>
       <gbprimepay>
           <gbprimepay_required>
             <environment>prelive</environment>

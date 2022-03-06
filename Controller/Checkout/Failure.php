@@ -57,7 +57,7 @@ class Failure extends \GBPrimePay\Checkout\Controller\Checkout
                     }
                     $order_note = "Payment Failure, Transaction cannot be authorized";
                     $this->failureOrder($orderId, "canceled", $order_note);   
-                    $this->checkoutSession->restoreQuote();    
+                    $this->checkoutSession->restoreQuote();   
                   }        
       
     return $this->PageFactory->create();

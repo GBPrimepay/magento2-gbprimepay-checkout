@@ -57,7 +57,7 @@ class Cancel extends \GBPrimePay\Checkout\Controller\Checkout
                     }
                     $order_note = "Payment Canceled, Order canceled by customer";
                     $this->failureOrder($orderId, "canceled", $order_note);   
-                    $this->checkoutSession->restoreQuote();    
+                    $this->checkoutSession->restoreQuote();
                   }        
       
     return $this->PageFactory->create();

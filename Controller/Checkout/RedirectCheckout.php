@@ -231,7 +231,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '<center><p>Please click button below to Authenticate your card</p><input type="submit" value="Go"/></p></center>' .
           '</noscript>' .
           '</form></body></html>';
-echo $res;
+        echo $res;  
                 if(!empty($res)){
                     $this->_config->unsGBPTransactionITEM();
                     $this->_config->unsGBPTransactionKEY();
@@ -242,10 +242,23 @@ echo $res;
                 }else {
                     $this->cancelOrder();
                     $this->checkoutSession->restoreQuote();
-                    return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+                    echo "err1";
+                    if ($_orderId != $_getEntityId) {
+                      echo "orderId : ".$_orderId."<br/>";
+                      echo "getEntityId : ".$_getEntityId."<br/>";
+                    }
+                    if (($_getIncrementId != $_getOrderByEntityId )) {
+                      echo "getIncrementId : ".$_getIncrementId."<br/>";
+                      echo "getOrderByEntityId : ".$_getOrderByEntityId."<br/>";
+                    }
+                    //return $this->resultRedirectFactory->create()->setPath('checkout/cart');
                 }
             } else {
-                return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+                echo "err2";
+                echo "page : ".$JSON_GET["page"]."<br/>";
+                echo "serialID : ".$JSON_GET["serialID"]."<br/>";
+                echo "payment_date : ".$JSON_GET["payment_data"]."<br/>";
+                //return $this->resultRedirectFactory->create()->setPath('checkout/cart');
             }
       } catch (\Exception $exception) {
           if ($this->_config->getCanDebug()) {

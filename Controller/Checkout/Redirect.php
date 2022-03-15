@@ -72,10 +72,21 @@ $res =  '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' .
           '<center><p>Please click button below to Authenticate your card</p><input type="submit" value="Go"/></p></center>' .
           '</noscript>' .
           '</form></body></html>';
-echo $res;
+            echo $res;
                 }
             } else {
-                return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+
+                echo "err3";
+                if ($_orderId != $_getEntityId) {
+                    echo "orderId : ".$_orderId."<br/>";
+                    echo "getEntityId : ".$_getEntityId."<br/>";
+                  }
+                  if (($_getIncrementId != $_getOrderByEntityId )) {
+                    echo "getIncrementId : ".$_getIncrementId."<br/>";
+                    echo "getOrderByEntityId : ".$_getOrderByEntityId."<br/>";
+                  }
+                
+                //return $this->resultRedirectFactory->create()->setPath('checkout/cart');
             }
         exit;
       } catch (\Exception $exception) {

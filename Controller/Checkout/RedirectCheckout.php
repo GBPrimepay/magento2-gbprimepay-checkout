@@ -243,14 +243,10 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                     $this->cancelOrder();
                     $this->checkoutSession->restoreQuote();
                     echo "err1";
-                    if ($_orderId != $_getEntityId) {
-                      echo "orderId : ".$_orderId."<br/>";
-                      echo "getEntityId : ".$_getEntityId."<br/>";
-                    }
-                    if (($_getIncrementId != $_getOrderByEntityId )) {
-                      echo "getIncrementId : ".$_getIncrementId."<br/>";
-                      echo "getOrderByEntityId : ".$_getOrderByEntityId."<br/>";
-                    }
+                    echo "orderId : ".$_orderId."<br/>";
+                    echo "getEntityId : ".$_getEntityId."<br/>";                  
+                    echo "getIncrementId : ".$_getIncrementId."<br/>";
+                    echo "getOrderByEntityId : ".$_getOrderByEntityId."<br/>";
                     //return $this->resultRedirectFactory->create()->setPath('checkout/cart');
                 }
             } else {

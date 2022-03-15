@@ -56,7 +56,9 @@ class Redirect extends \GBPrimePay\Checkout\Controller\Checkout
 
                 $ordercompletestatus = $this->getOrderCompleteStatus($_getOrderByEntityId);
                 if($ordercompletestatus != 0){
-                    return $this->resultRedirectFactory->create()->setPath('checkout/cart');
+                    echo "err not complete";
+                
+                   // return $this->resultRedirectFactory->create()->setPath('checkout/cart');
                 }else{
 $res =  '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">' .
           '<html><head>' .

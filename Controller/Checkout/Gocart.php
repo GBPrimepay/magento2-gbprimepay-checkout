@@ -25,7 +25,7 @@ use Magento\Framework\Phrase;
 use GBPrimePay\Checkout\Helper\Constant;
 use GBPrimePay\Checkout\Controller\Checkout\CsrfValidator;
 
-class Cancel extends \GBPrimePay\Checkout\Controller\Checkout
+class Gocart extends \GBPrimePay\Checkout\Controller\Checkout
 {
   /**
    * Dispatch request
@@ -36,34 +36,21 @@ class Cancel extends \GBPrimePay\Checkout\Controller\Checkout
   public function execute()
   {
         $_orderId = $this->checkoutSession->getData('last_order_id');
+        $this->gbprimepayLogger->addDebug("Gocart _orderId //" .'\r\n\r\n'. print_r($_orderId,true));
         if ($_orderId) {
-        $orderId = $this->getIncrementIdByOrderId($_orderId);
-        $order = $this->getQuoteByOrderId($orderId); 
-        $_getCustomerId = $order->getCustomerId();
-        $payment = $order->getPayment();
-        $transaction_form_additional = $payment->getAdditionalInformation("transaction_form");
-            $isLogin = $this->customerSession->isLoggedIn();
-            if ($isLogin) {
-            }else{
-              if(!empty($_getCustomerId)){
-                $transaction_form = $this->reloadCustomerId($payment, $_getCustomerId, $transaction_form_additional);
-              }
-            }
-                  if ($orderId) {
-                  
-                    if(empty($transaction_form)){
-                      $transaction_form = $transaction_form_additional;
-                    }
-                    $order_note = "Payment Canceled, Order canceled by customer";
-                    $this->failureOrder($orderId, "canceled", $order_note);
-                  }        
-      
-    return $this->PageFactory->create();
-    }else{
-      $resultRedirect = $this->RedirectFactory->create();
-      $resultRedirect->setPath('/');
-      return $resultRedirect;
-    }
+          $this->checkoutSession->restoreQuote();
+          $this->_messageManager->addWarning(
+              __('GBPrimePay Checkout Failed!. Please try again.')
+          );
+          $argument = ['_current' => true];
+          $resultRedirect = $this->RedirectFactory->create();
+          $resultRedirect->setPath('checkout/cart',$argument);    
+          return $resultRedirect;
+        }else{
+          $resultRedirect = $this->RedirectFactory->create();
+          $resultRedirect->setPath('/');
+          return $resultRedirect;
+        }
   }
 
   public function modifyCsp(array $appliedPolicies): array

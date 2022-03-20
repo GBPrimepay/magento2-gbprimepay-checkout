@@ -28,21 +28,25 @@ define(
         'use strict';
   
                 var generator = setInterval(function () {
+					window.console.log("generator-load");
                     if ($("input[name='payment[transaction_id]']").length > 0) {
                       var hash = window.location.hash;
                       var selected = $('input[name="payment[method]"]:checked').val();
+						  window.console.log("generator-setInterval"+ selected);
                       if ((hash == "#payment") && (selected == "gbprimepay_checkout")) {
+						  window.console.log("generator-setInterval");
                           $('input[name="payment[method]"]:checked').trigger("click");
                       }
                       clearInterval(generator);
                     }
-                }.bind(this), 200);
+                }, 700);
   
   
             $(window).on('hashchange', function() {
                   var hash = window.location.hash;
                   var selected = $('input[name="payment[method]"]:checked').val();
                   if((hash=="#payment") && (selected=="gbprimepay_checkout")){
+					window.console.log("generator-hashchange");
                     $('input[name="payment[method]"]:checked').trigger("click");
                   }
             });
@@ -178,13 +182,15 @@ define(
 
   var redirector = setInterval(function () {
     if ($("input[name='payment[transaction_id]']").length > 0) {
-      if (this.item.method == 'gbprimepay_checkout') {
-        window.location.replace(url.build('gbprimepay/checkout/redirectcheckout/id/' + $orderId + '/form_key/' + $orderFormkey + '/key/' + $orderKey));
+      if ($('input[name="payment[method]"]:checked').val() == 'gbprimepay_checkout') {
+        
+        window.console.log("Continue to Payment - redirector"); 
+		window.location.replace(url.build('gbprimepay/checkout/redirectcheckout/id/' + $orderId + '/form_key/' + $orderFormkey + '/key/' + $orderKey));
              
       }
       clearInterval(redirector);
     }
-}.bind(this), 200);
+}, 700);
 
 
 

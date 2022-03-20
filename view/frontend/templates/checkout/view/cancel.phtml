@@ -12,7 +12,8 @@ $cards = $block->getDataCard();
 $customerId = $block->customerSession->getCustomerId() ? '1' : '0';
 $baseUrl = $block->getBaseUrl();
 $returnUrlSuccess = $block->getUrl("checkout/onepage/success");
-$returnUrlFailed = $block->getUrl("checkout/cart");
+$returnUrlFailed = $block->getUrl("gbprimepay/checkout/gocart");
+// $returnUrlFailed = $block->getUrl("gbprimepay/checkout/gohome");
 
 $img_checked = $configData->getImageURLs('checked');
 $img_unchecked = $configData->getImageURLs('unchecked');

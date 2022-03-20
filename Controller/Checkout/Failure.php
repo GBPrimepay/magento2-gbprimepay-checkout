@@ -36,7 +36,6 @@ class Failure extends \GBPrimePay\Checkout\Controller\Checkout
   public function execute()
   {
         $_orderId = $this->checkoutSession->getData('last_order_id');
-        $resultRedirect = $this->RedirectFactory->create();
         if ($_orderId) {
         $orderId = $this->getIncrementIdByOrderId($_orderId);
         $order = $this->getQuoteByOrderId($orderId); 
@@ -57,7 +56,6 @@ class Failure extends \GBPrimePay\Checkout\Controller\Checkout
                     }
                     $order_note = "Payment Failure, Transaction cannot be authorized";
                     $this->failureOrder($orderId, "canceled", $order_note);   
-                    $this->checkoutSession->restoreQuote();   
                   }        
       
     return $this->PageFactory->create();

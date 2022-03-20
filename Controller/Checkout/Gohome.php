@@ -36,7 +36,6 @@ class Gohome extends \GBPrimePay\Checkout\Controller\Checkout
   public function execute()
   {
         $_orderId = $this->checkoutSession->getData('last_order_id');
-        $this->gbprimepayLogger->addDebug("Gohome _orderId //" .'\r\n\r\n'. print_r($_orderId,true));
         if ($_orderId) {
           $this->checkoutSession->clearQuote();
           $this->checkoutSession->clearStorage();

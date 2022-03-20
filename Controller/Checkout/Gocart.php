@@ -36,7 +36,6 @@ class Gocart extends \GBPrimePay\Checkout\Controller\Checkout
   public function execute()
   {
         $_orderId = $this->checkoutSession->getData('last_order_id');
-        $this->gbprimepayLogger->addDebug("Gocart _orderId //" .'\r\n\r\n'. print_r($_orderId,true));
         if ($_orderId) {
           $this->checkoutSession->restoreQuote();
           $this->_messageManager->addWarning(

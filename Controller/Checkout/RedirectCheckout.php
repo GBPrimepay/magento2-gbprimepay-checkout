@@ -72,14 +72,14 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '<div class="gbp_global_loader"><div class="gbp_loader"></div></div>'.
           '<main><div>GBPrimePay Checkout, Invoking Secure Payment, Please Wait ..</div></main>'.
           '<form id="form" name="form" action="'. $JSON_GET['page'].'" method="post"  target="_top">' .
-          '<input type="text" name="serialID" value="'. $JSON_GET['serialID'].'">' .
-          '<input type="text" name="domain" value="'. $JSON_GET['domain'].'">' .
-          '<input type="text" name="platform" value="'. $JSON_GET['platform'].'">' .
-          '<input type="text" name="mode" value="'. $JSON_GET['mode'].'">' .
-          '<input type="text" name="status" value="'. $JSON_GET['status'].'">' .
-          '<input type="text" name="method" value="'. $JSON_GET['method'].'">' .
-          '<input type="text" name="environment" value="'. $JSON_GET['environment'].'">' .
-          '<input type="text" name="language" value="'. $JSON_GET['language'].'">' .
+          '<input type="hidden" name="serialID" value="'. $JSON_GET['serialID'].'">' .
+          '<input type="hidden" name="domain" value="'. $JSON_GET['domain'].'">' .
+          '<input type="hidden" name="platform" value="'. $JSON_GET['platform'].'">' .
+          '<input type="hidden" name="mode" value="'. $JSON_GET['mode'].'">' .
+          '<input type="hidden" name="status" value="'. $JSON_GET['status'].'">' .
+          '<input type="hidden" name="method" value="'. $JSON_GET['method'].'">' .
+          '<input type="hidden" name="environment" value="'. $JSON_GET['environment'].'">' .
+          '<input type="hidden" name="language" value="'. $JSON_GET['language'].'">' .
           '';
           $json_init_gbp = html_entity_decode($JSON_GET['init_gbp']);
           $initgbpArray = json_decode($json_init_gbp, true);
@@ -90,12 +90,12 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
               foreach($initgbpArray[$keys[$i]] as $key => $value) {
                   if($key=='prelive'){                    
                     foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                        $res .=  '<input type="text" name="init_gbp[environment][prelive]['. $ikey .']" value="'. $ivalue .'">';
+                        $res .=  '<input type="hidden" name="init_gbp[environment][prelive]['. $ikey .']" value="'. $ivalue .'">';
                     }
                   }
                   if($key=='production'){                    
                     foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                        $res .=  '<input type="text" name="init_gbp[environment][production]['. $ikey .']" value="'. $ivalue .'">';
+                        $res .=  '<input type="hidden" name="init_gbp[environment][production]['. $ikey .']" value="'. $ivalue .'">';
                     }
                   }
               }
@@ -110,52 +110,52 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                       foreach($initgbpArray[$keys[$i]] as $key => $value) {
                         if(($key=='creditcard') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][creditcard]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][creditcard]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='installment') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][installment]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][installment]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='installment_options') && ($jvalue=='installment')){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][installment_options]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][installment_options]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='qrcode') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][qrcode]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][qrcode]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='qrcredit') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][qrcredit]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][qrcredit]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='qrwechat') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][qrwechat]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][qrwechat]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='linepay') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][linepay]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][linepay]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='truewallet') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][truewallet]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][truewallet]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='mbanking') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][mbanking]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][mbanking]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                         if(($key=='barcode') && ($jvalue==$key)){                    
                           foreach($initgbpArray[$keys[$i]][$key] as $ikey => $ivalue) {
-                              $res .=  '<input type="text" name="init_gbp[init_gateways][barcode]['. $ikey .']" value="'. $ivalue .'">';
+                              $res .=  '<input type="hidden" name="init_gbp[init_gateways][barcode]['. $ikey .']" value="'. $ivalue .'">';
                           }
                         }
                     }
@@ -171,9 +171,9 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
             $keys = array_keys($merchantArray);
                 foreach($merchantArray as $key => $value) {
                   if($key=='merchant_conditions'){
-                    $res .=  '<input type="text" name="merchant_collection['. $key .']" value="'. htmlentities($value) .'">';
+                    $res .=  '<input type="hidden" name="merchant_collection['. $key .']" value="'. htmlentities($value) .'">';
                   }else{                    
-                    $res .=  '<input type="text" name="merchant_collection['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="merchant_collection['. $key .']" value="'. $value .'">';
                   }
                 }
           }
@@ -184,7 +184,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
             $keys = array_keys($productArray);
             for($i = 0; $i < count($productArray); $i++) {
                 foreach($productArray[$keys[$i]] as $key => $value) {
-                    $res .=  '<input type="text" name="products_collection[products_items_'. $i .']['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="products_collection[products_items_'. $i .']['. $key .']" value="'. $value .'">';
                 }
             }    
           }
@@ -192,7 +192,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           if(isset($paymentArray)){
             $keys = array_keys($paymentArray);
                 foreach($paymentArray as $key => $value) {
-                    $res .=  '<input type="text" name="payment_collection['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="payment_collection['. $key .']" value="'. $value .'">';
                 }
           }
           '';
@@ -201,7 +201,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           if(isset($currencyArray)){
             $keys = array_keys($currencyArray);
                 foreach($currencyArray as $key => $value) {
-                    $res .=  '<input type="text" name="currency['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="currency['. $key .']" value="'. $value .'">';
                 }
           }
           '';
@@ -210,7 +210,7 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           if(isset($sortArray)){
             $keys = array_keys($sortArray);
                 foreach($sortArray as $key => $value) {
-                    $res .=  '<input type="text" name="sort_method['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="sort_method['. $key .']" value="'. $value .'">';
                 }
           }
           '';
@@ -219,13 +219,13 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           if(isset($customerArray)){
             $keys = array_keys($customerArray);
                 foreach($customerArray as $key => $value) {
-                    $res .=  '<input type="text" name="customer_collection['. $key .']" value="'. $value .'">';
+                    $res .=  '<input type="hidden" name="customer_collection['. $key .']" value="'. $value .'">';
                 }
           }
-        $res .=  '<input type="text" name="url_complete" value="'. $JSON_GET['url_complete'].'">' .
-          '<input type="text" name="url_callback" value="'. $JSON_GET['url_callback'].'">' .
-          '<input type="text" name="url_cancel" value="'. $JSON_GET['url_cancel'].'">' .
-          '<input type="text" name="url_error" value="'. $JSON_GET['url_error'].'">' .
+        $res .=  '<input type="hidden" name="url_complete" value="'. $JSON_GET['url_complete'].'">' .
+          '<input type="hidden" name="url_callback" value="'. $JSON_GET['url_callback'].'">' .
+          '<input type="hidden" name="url_cancel" value="'. $JSON_GET['url_cancel'].'">' .
+          '<input type="hidden" name="url_error" value="'. $JSON_GET['url_error'].'">' .
           '<noscript>' .
           '<center><p>Please click button below to Authenticate your card</p><input type="submit" value="Go"/></p></center>' .
           '</noscript>' .

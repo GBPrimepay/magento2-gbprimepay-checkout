@@ -39,7 +39,6 @@ class Gohome extends \GBPrimePay\Checkout\Controller\Checkout
         if ($_orderId) {
           $this->checkoutSession->clearQuote();
           $this->checkoutSession->clearStorage();
-          $this->gbprimepayLogger->addDebug("clearQuote3");
           $resultRedirect = $this->RedirectFactory->create();
           $resultRedirect->setPath('/'); 
           return $resultRedirect;

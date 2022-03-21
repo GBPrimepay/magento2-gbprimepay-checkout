@@ -28,11 +28,9 @@ define(
         'use strict';
   
                 var generator = setInterval(function () {
-					window.console.log("generator-load");
                     if ($("input[name='payment[transaction_id]']").length > 0) {
                       var hash = window.location.hash;
                       var selected = $('input[name="payment[method]"]:checked').val();
-						  window.console.log("generator-setInterval"+ selected);
                       if ((hash == "#payment") && (selected == "gbprimepay_checkout")) {
 						  window.console.log("generator-setInterval");
                           $('input[name="payment[method]"]:checked').trigger("click");

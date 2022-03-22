@@ -24,6 +24,8 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
     public function execute()
     {
       try {
+
+
           $transactionId = $this->getRequest()->getParam('key');
           $_orderId = $this->getRequest()->getParam('id');
           $orderId = $this->getIncrementIdByOrderId($_orderId);
@@ -39,7 +41,19 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
                 $_transaction_key = $this->_config->getGBPTransactionKEY();
                 $_transaction_info = $this->_config->getGBPTransactionINFO();
                 $_transaction_amt = $this->_config->getGBPTransactionAMT();
-                $JSON_GET = $this->_config->getGBPTransactionITEM();  
+                $JSON_GET = $this->_config->getGBPTransactionITEM();    
+				
+                if(($JSON_GET["serialID"]) != $transactionId){
+                    if($transactionId){
+                      $nGenerateID = $transactionId;
+                      $_transaction_key = $nGenerateID;
+                      $set_transaction_key = $this->checkoutSession->setGBPTransactionKEY($nGenerateID);
+                      $con_transaction_key = $this->_config->setGBPTransactionKEY($nGenerateID);
+                      $pos_transaction_key = $this->_config->getGBPTransactionKEY();
+                      $JSON_GET['serialID'] = $nGenerateID;
+                      $paymentArray["payment_merchantDefined1"] = $nGenerateID;
+                    }                
+                }
                 
                 if(isset($JSON_GET["payment_data"]) && !empty($JSON_GET["payment_data"])){
                   $json_payment_data = html_entity_decode($JSON_GET['payment_data']);
@@ -230,14 +244,17 @@ class RedirectCheckout extends \GBPrimePay\Checkout\Controller\Checkout
           '<center><p>Please click button below to Authenticate your card</p><input type="submit" value="Go"/></p></center>' .
           '</noscript>' .
           '</form></body></html>';
+          
 echo $res;
                 
                 }else {
+                    $this->gbprimepayLogger->addDebug("RedirectCheckout JSON_GET ELSE //" .'\r\n\r\n');
                     $this->cancelOrder();
                     $this->checkoutSession->restoreQuote();
                     return $this->resultRedirectFactory->create()->setPath('checkout/cart');
                 }
             } else {
+                $this->gbprimepayLogger->addDebug("RedirectCheckout EntityId NOT SAME //" .'\r\n\r\n');
                 return $this->resultRedirectFactory->create()->setPath('checkout/cart');
             }
       } catch (\Exception $exception) {

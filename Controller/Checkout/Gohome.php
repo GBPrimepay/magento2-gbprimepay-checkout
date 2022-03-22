@@ -34,19 +34,10 @@ class Gohome extends \GBPrimePay\Checkout\Controller\Checkout
    * @throws \Magento\Framework\Exception\NotFoundException
    */
   public function execute()
-  {
-        $_orderId = $this->checkoutSession->getData('last_order_id');
-        if ($_orderId) {
-          $this->checkoutSession->clearQuote();
-          $this->checkoutSession->clearStorage();
-          $resultRedirect = $this->RedirectFactory->create();
-          $resultRedirect->setPath('/'); 
-          return $resultRedirect;
-        }else{
-          $resultRedirect = $this->RedirectFactory->create();
-          $resultRedirect->setPath('/');
-          return $resultRedirect;
-        }
+  {      
+      $resultRedirect = $this->RedirectFactory->create();
+      $resultRedirect->setPath('/');
+      return $resultRedirect;
   }
 
   public function modifyCsp(array $appliedPolicies): array

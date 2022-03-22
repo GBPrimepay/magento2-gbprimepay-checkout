@@ -17,6 +17,7 @@ $transaction_info = $block->getTransactionINFO();
 $transaction_amt = $block->getTransactionAMT();
 
 $beforeCheckout = $block->getUrl("gbprimepay/checkout/eventsbeforecheckout");
+$renderCheckout = $block->getUrl("gbprimepay/checkout/eventsrendercheckout");
 $assignCheckout = $block->getUrl("gbprimepay/checkout/eventsassigncheckout");
 
 $directPO = $block->getUrl("gbprimepay/checkout/directplaceorder");
@@ -80,6 +81,7 @@ ksort($countrySel);
     window.gbprimepay.transaction_amt = '<?php echo $transaction_amt; ?>';
 
     window.gbprimepay.beforeCheckout = '<?php echo $beforeCheckout; ?>';
+    window.gbprimepay.renderCheckout = '<?php echo $renderCheckout; ?>';
     window.gbprimepay.assignCheckout = '<?php echo $assignCheckout; ?>';
     window.gbprimepay.logoCheckout = '<?php echo $configData->getLogoCheckout(); ?>';
     window.gbprimepay.titleCheckout = '<?php echo $configData->getTitleCheckout(); ?>';

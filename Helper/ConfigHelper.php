@@ -227,9 +227,24 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
       {
         $microtime = md5(microtime());
         $encoded = $this->encode($microtime , $this->getDomain());
-        $serial = implode('-', str_split(substr(strtolower($encoded), rand(10,30), 32), 5));
+        $serial = implode('-', str_split(substr(strtolower($encoded), 0, 32), 5));
         return $serial;
       }
+    public function clearCart()
+    {
+        $clearcart = Constant::CLEARCART;
+        return $clearcart;
+    }
+    public function clearCartUrl()
+    {
+        $clearcart = Constant::CLEARCART;
+        if($clearcart == "true"){
+            $clearcarturl = $this->_urlBuilder->getUrl("gbprimepay/checkout/gohome");
+        }else{            
+            $clearcarturl = $this->_urlBuilder->getUrl("gbprimepay/checkout/gocart");
+        }
+        return $clearcarturl;
+    }
     public function getMerchantId()
     {
         if ($this->getEnvironment() === 'prelive') {
@@ -1430,8 +1445,7 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
     public function setGBPMethod($value)
     {
-        $this->checkoutSession->setGBPMethod($value);
-        return true;
+        return $this->checkoutSession->setGBPMethod($value);;
     }
     public function getGBPMethod()
     {
@@ -1439,8 +1453,7 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
     public function setGBPTransactionAMT($value)
     {
-        $this->checkoutSession->setGBPTransactionAMT($value);
-        return true;
+        return $this->checkoutSession->setGBPTransactionAMT($value);
     }
     public function getGBPTransactionAMT()
     {
@@ -1448,8 +1461,7 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
     public function setGBPTransactionID($value)
     {
-        $this->checkoutSession->setGBPTransactionID($value);
-        return true;
+        return $this->checkoutSession->setGBPTransactionID($value);
     }
     public function getGBPTransactionID()
     {
@@ -1457,13 +1469,11 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
     public function setGBPTransactionKEY($value)
     {
-        $this->checkoutSession->setGBPTransactionKEY($value);
-        return true;
+        return $this->checkoutSession->setGBPTransactionKEY($value);
     }
     public function setGBPTransactionINFO($value)
     {
-        $this->checkoutSession->setGBPTransactionINFO($value);
-        return true;
+        return $this->checkoutSession->setGBPTransactionINFO($value);
     }
     public function getGBPTransactionKEY()
     {
@@ -1475,17 +1485,15 @@ class ConfigHelper extends \Magento\Framework\App\Helper\AbstractHelper
     }
     public function setGBPFormKEY($value)
     {
-        $this->checkoutSession->setGBPFormKEY($value);
-        return true;
+        return $this->checkoutSession->setGBPFormKEY($value);
     }
     public function getGBPFormKEY()
     {
-        return $this->checkoutSession->getGBPFormKEY();
+        return $this->_formKey->getFormKey();
     }
     public function setGBPTransactionITEM($value)
     {
-        $this->checkoutSession->setGBPTransactionITEM($value);
-        return true;
+        return $this->checkoutSession->setGBPTransactionITEM($value);
     }
     public function getGBPTransactionITEM()
     {

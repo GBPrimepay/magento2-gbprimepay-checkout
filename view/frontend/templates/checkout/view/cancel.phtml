@@ -12,8 +12,7 @@ $cards = $block->getDataCard();
 $customerId = $block->customerSession->getCustomerId() ? '1' : '0';
 $baseUrl = $block->getBaseUrl();
 $returnUrlSuccess = $block->getUrl("checkout/onepage/success");
-$returnUrlFailed = $block->getUrl("gbprimepay/checkout/gocart");
-// $returnUrlFailed = $block->getUrl("gbprimepay/checkout/gohome");
+$returnUrlFailed = $configData->clearCartUrl();
 
 $img_checked = $configData->getImageURLs('checked');
 $img_unchecked = $configData->getImageURLs('unchecked');
@@ -41,11 +40,12 @@ require([
   'domReady!'
 ], function ($, domReady) {
   'use strict';
-  setInterval(function(){get_return_url($);},10000);
+  setInterval(function(){get_return_url($);},8000);
 });
 function get_return_url($){
 var $orderFormkey = $("input[name='form_key']").val();         
-var $orderURL = "<?php echo $returnUrlFailed; ?>";      
+var $orderURL = "<?php echo $returnUrlFailed; ?>";        
+window.console.log($orderURL);  
 window.location.replace($orderURL);
 }
 </script>

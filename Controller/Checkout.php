@@ -334,9 +334,16 @@ abstract class Checkout extends \Magento\Framework\App\Action\Action
         $order->addStatusToHistory($status, $order_note, true);
         $order->setIsCustomerNotified(true);
         $order->registerCancellation('Order canceled by customer')->save();
+        $clearcart = $this->_config->clearCart();
         $quote = $this->quoteRepository->get($order->getQuoteId());
             if ($quote->getId()){
                 $quote->setIsActive(1)->setReservedOrderId(null);
+                if($clearcart == "true"){
+                    foreach ($quote->getAllVisibleItems() as $item)
+                    {
+                        $quote->deleteItem($item)->save();
+                    }
+                }
                 $this->quoteRepository->save($quote);
             }
 

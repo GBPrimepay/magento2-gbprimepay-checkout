@@ -448,11 +448,19 @@ if(isset($sortGatewaysTXT)){
 }
 $_transaction_info = $arrTXT.' through';
 
-        $this->_config->setGBPTransactionITEM($_item);
-        $this->_config->setGBPTransactionKEY($_transaction_key);
-        $this->_config->setGBPTransactionINFO($_transaction_info);
-        $this->_config->setGBPTransactionID($_transaction_id);
-        $this->_config->setGBPTransactionAMT($checkout_amount);
+        $set_transaction_item = $this->checkoutSession->setGBPTransactionITEM($_item);
+        $set_transaction_key = $this->checkoutSession->setGBPTransactionKEY($_transaction_key);
+        $set_transaction_info = $this->checkoutSession->setGBPTransactionINFO($_transaction_info);
+        $set_transaction_id = $this->checkoutSession->setGBPTransactionID($_transaction_id);
+        $set_transaction_amt = $this->checkoutSession->setGBPTransactionAMT($checkout_amount);
+        
+              
+        $pre_transaction_id = $this->_config->getGBPTransactionID();
+        $pre_transaction_key = $this->_config->getGBPTransactionKEY();
+        $pre_transaction_info = $this->_config->getGBPTransactionINFO(); 
+        $pre_transaction_item = $this->_config->getGBPTransactionITEM();
+        $pre_transaction_amt = $this->_config->getGBPTransactionAMT();
+
 	return $this;
 	}
     function transactiondigit($string) {

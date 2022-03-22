@@ -14,6 +14,7 @@ class Constant
     const PLATFORM = 'magento';
     const MODE = 'payment';
     const STATUS = 'draft';
+    const CLEARCART = 'false';
 
     const URL_CHECKOUT_TEST = 'https://checkout.globalprimepay.com';
     const URL_CHECKOUT_LIVE = 'https://checkout.gbprimepay.com';

@@ -27,24 +27,12 @@ define(
         ) {
         'use strict';
   
-                var generator = setInterval(function () {
-                    if ($("input[name='payment[transaction_id]']").length > 0) {
-                      var hash = window.location.hash;
-                      var selected = $('input[name="payment[method]"]:checked').val();
-                      if ((hash == "#payment") && (selected == "gbprimepay_checkout")) {
-						  window.console.log("generator-setInterval");
-                          $('input[name="payment[method]"]:checked').trigger("click");
-                      }
-                      clearInterval(generator);
-                    }
-                }, 700);
-  
   
             $(window).on('hashchange', function() {
                   var hash = window.location.hash;
                   var selected = $('input[name="payment[method]"]:checked').val();
                   if((hash=="#payment") && (selected=="gbprimepay_checkout")){
-					window.console.log("generator-hashchange");
+					window.console.log("hashchange - done");
                     $('input[name="payment[method]"]:checked').trigger("click");
                   }
             });
@@ -58,9 +46,12 @@ define(
                 this._super().observe({
                     sayHello: '1',
                 });
-                var self = this;
+                var self = this; 
+                
+                fullScreenLoader.startLoader();
+                this.isPlaceOrderActionAllowed(false);
                   
-                this.selectPaymentMethod();
+                // this.selectPaymentMethod();
                 
                 return this;
             },
@@ -120,6 +111,7 @@ define(
                             $("input[name='transaction_info']").val(response.transaction_info);
                             $('#GBPCdummy').html(response.transaction_info);
                             $('#GBPCdummy').attr('data-info', response.transaction_info);
+							window.console.log("beforeCheckout - done"); 
                             fullScreenLoader.stopLoader();
                             self.isPlaceOrderActionAllowed(true);
                         }
@@ -137,6 +129,33 @@ define(
                         self.messageContainer.addErrorMessage({
                             message: "Error, please try again"
                         });
+                    }
+                });
+            },
+            readyCheckoutRender: function () {
+                var self = this;                       
+                fullScreenLoader.startLoader();
+                self.isPlaceOrderActionAllowed(false);
+				var data_submit = {
+					'serialID': $("input[name='payment[transaction_key]']").val(),
+				};
+                $.ajax({
+                    type: 'POST',
+                    url: window.gbprimepay.renderCheckout,
+					data: data_submit,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+							window.console.log("renderCheckout - done");
+                        }
+                        if (response.error) {
+							window.console.log("renderCheckout - done");
+                        }
+                    },
+                    error: function (response) {
+                        if (response) {
+							window.console.log("renderCheckout - done");
+                        }
                     }
                 });
             },
@@ -158,13 +177,25 @@ define(
 
                     this.getPlaceOrderDeferredObject()
                         .fail(function () {
+                            window.console.log("getOrder - fail");   
                             fullScreenLoader.stopLoader();
                             self.isPlaceOrderActionAllowed(true);
                             })
                         .done(function (orderId) {  
                             var $orderId = orderId;
-                            window.console.log("Continue to Payment - orderId "+$orderId);   
-                            self.afterPlaceOrder(orderId);
+                            fullScreenLoader.startLoader();
+                            self.isPlaceOrderActionAllowed(false);
+                            window.console.log("getOrder - done");  
+                            var placeorderer = setInterval(function () {
+                                if ($("input[name='payment[transaction_id]']").length > 0) {
+                                    if ($orderId) {
+                                        window.console.log("Continue to Payment - done"); 
+                                        self.afterPlaceOrder(orderId);
+                                    }
+                                clearInterval(placeorderer);
+                                }
+                            }, 700);
+
                         },
                         );
                     return true;
@@ -174,25 +205,24 @@ define(
             afterPlaceOrder: function (orderId) {    
             var $orderId = orderId;
             var $orderKey = $("input[name='payment[transaction_key]']").val();     
-            var $orderFormkey = $("input[name='form_key']").val();     
+            var $orderFormkey = $("input[name='form_key']").val();   
+            window.console.log("afterPlaceOrder - done");   
+            fullScreenLoader.startLoader();
             this.isPlaceOrderActionAllowed(false);
             if ($orderId) {
-
-  var redirector = setInterval(function () {
-    if ($("input[name='payment[transaction_id]']").length > 0) {
-      if ($('input[name="payment[method]"]:checked').val() == 'gbprimepay_checkout') {
-        
-        window.console.log("Continue to Payment - redirector"); 
-		window.location.replace(url.build('gbprimepay/checkout/redirectcheckout/id/' + $orderId + '/form_key/' + $orderFormkey + '/key/' + $orderKey));
-             
-      }
-      clearInterval(redirector);
-    }
-}, 700);
-
-
-
                 
+            this.readyCheckoutRender();
+
+            var redirector = setInterval(function () {
+                if ($("input[name='payment[transaction_id]']").length > 0) {
+                if ($('input[name="payment[method]"]:checked').val() == 'gbprimepay_checkout') {                    
+                    window.console.log("redirector - done"); 
+                    window.location.replace(url.build('gbprimepay/checkout/redirectcheckout/id/' + $orderId + '/form_key/' + $orderFormkey + '/key/' + $orderKey));                        
+                }
+                clearInterval(redirector);
+                }
+            }, 700);
+                            
             }
   
             },
@@ -209,6 +239,26 @@ define(
                 var result = this._super();
                 this.loadCheckoutRender();
                 return result;
+            },
+            loadJsAfterKoRender: function(){
+				window.console.log("render - done");  
+                this.selectPaymentMethod();
+                fullScreenLoader.stopLoader();
+                this.isPlaceOrderActionAllowed(true);
+                
+  
+                var generator = setInterval(function () {
+                    if ($("input[name='payment[transaction_id]']").length > 0) {
+                      var hash = window.location.hash;
+                      var selected = $('input[name="payment[method]"]:checked').val();
+                      if ((hash == "#payment") && (selected == "gbprimepay_checkout")) {
+						  window.console.log("generator - done");
+                          $('input[name="payment[method]"]:checked').trigger("click");
+                      }
+                      clearInterval(generator);
+                    }
+                }, 700);
+
             }
         });
     }

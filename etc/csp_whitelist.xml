@@ -4,7 +4,8 @@
     <policies>
         <policy id="form-action">
             <values>
-                <value id="checkout_gbprimepay" type="host">checkout.gbprimepay.com</value>
+                <value id="host_gbprimepay_api" type="host">api.gbprimepay.com</value>
+                <value id="host_gbprimepay_checkout" type="host">checkout.gbprimepay.com</value>
             </values>
         </policy>
     </policies>
